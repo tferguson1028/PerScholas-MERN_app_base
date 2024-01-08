@@ -46,3 +46,16 @@ Steps we took to build.
 7. Start both the server and client in seperate terminals.
   - Client: ```npm start```
   - Server: ```nodemon server```
+
+8. Add a proxy to the ```package.json``` file.
+This will be in the top-level of the document
+```
+{
+  "name": "full_stack_mern_app_practice",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {...}
+  ...,
+  "proxy": "http://localhost:3001"
+}
+```
