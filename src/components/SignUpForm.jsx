@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { signUp } from '../utilities/users-service';
 
 export class SignUpForm extends Component 
 {
@@ -9,18 +10,24 @@ export class SignUpForm extends Component
     event.preventDefault();
     try 
     {
-      // const formData = {...this.state};
-      // console.log("Form Data: ", formData);
-      // 
-      // delete formData.error;
-      // delete formData.confirm;
-      // 
-      // // const user = await signUp(formData);
+      const formData = {...this.state};
+      console.log("Form Data: ", formData);
+
+      // Removing unused data form the object we're submitting
+      delete formData.error;
+      delete formData.confirm;
+
+      // The promise returned by the signUp service method
+      // will resolve to the user object included in the
+      // payload of the JSON Web Token (JWT)
+      const user = await signUp(formData);
+      console.log(user);
+      
       // this.props.setUser(user);
     } catch(exception)
     {
       // An error occurred
-      // this.setState({ error: 'Sign Up Failed - Try Again' });
+      this.setState({ error: 'Sign Up Failed - Try Again' });
     }
   }
   
