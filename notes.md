@@ -83,8 +83,8 @@ Next, we'll be setting up the client portion of the app. The steps will change b
 3. Encapsulate the ```<App>``` component within the  ```<BrowserRouter>``` component in the ```index.js``` file to allow for single-page routing. This can also be done in the ```<App>``` component as well, but this will putting it in ```index.js``` will separate the functionality of each script.
 
 
-## Making the User Authentication
-Now we'll be setting up our utilities, services, and APIs; meaning any outgoing and incoming data to be handled. 
+## Making the AJAX Requests
+Now we'll be setting up our utilities, services, and APIs so that we can make AJAX requests. This is so that any outgoing and incoming data can be handled by our program. Again, I won't put specifics on how to code, just the general setup.
 
 1. Create the ```config```, ```routes```, ```models```, and ```controllers``` folders in the root directory.
     - The config will be used for configuration files.
@@ -97,8 +97,8 @@ Now we'll be setting up our utilities, services, and APIs; meaning any outgoing 
    - Input the code ```require('dotenv').config();``` into the ```server.js``` file near the top.
    - Create a ```.env``` file and add it to the ```.gitignore``` file.
    - Create a file ```database.js``` in the ```/config``` folder.
-   - Add the code ```require('./config/database');``` into the server.js file.
-   - Add the following code to the ```server.js``` file to connect your app with your database.
+   - Add the code ```require('./config/database');``` into the ```server.js``` file to run the code within said file on the server.
+   - Add the following code to the ```database.js``` file to connect your app with your database.
       ```
       const mongoose = require('mongoose');
       mongoose.connect(process.env.DATABASE_URL);
@@ -110,7 +110,79 @@ Now we'll be setting up our utilities, services, and APIs; meaning any outgoing 
       ```
    - Create an environment variable within the ```.env``` file which will contain your database URL. The code above uses ```DATABASE_URL```, you may change it to whatever you want. Follow the connection instructions on MongoDB. 
 
-3. 
+3. Setting up AJAX handling.
+    - Within the ```/routes``` folder, create another folder called ```api```, which should contain code to handle requests to our API. Example code:
+        ```
+        const express = require('express');
+        const router = express.Router();
+        const usersCtrl = require('../../controllers/api/users');
 
-4. Create a form component that can send the data to our api route.
+        // POST /api/users
+        router.post('/', usersCtrl.create);
 
+        module.exports = router;
+        ```
+    - Within the ```/controllers``` folder, create another folder called ```api```, which should contain code for controlling/creating/modifying outgoing data. Example code:
+        ```
+        function create(req, res)
+        {
+          // Baby step...
+          res.json(
+          {
+            user: 
+            {
+              name: req.body.name,
+              email: req.body.email
+            }
+          });
+        }
+
+        module.exports = { create };
+        ```
+        
+4. Create a ```utilities``` folder within the ```/src``` directory. This will contain code to process our POST requests so that our form components won't have cluttered functionality.
+    - API call example code:
+        ```
+        const BASE_URL = '/api/users';
+
+        export async function signUp(userData) 
+        {
+          const res = await fetch(BASE_URL, 
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+          });
+          
+          if (res.ok) { return res.json(); } 
+          else { throw new Error('Invalid Sign Up'); }
+        }
+        ```
+    - JWT encoding and ___ example code:
+        ```
+        Waiting for further progress...
+        ``` 
+
+4. Create a form component that can send the data to our api route. This example uses class components for some reason. Don't know why.
+    - Example Code:
+        ```
+        import { signUp } from '../utilities/users-service';
+
+        export class SignUpForm extends Component 
+        {
+          handleSubmit = async (event) =>
+          {
+            ...
+            const user = await signUp(formData);
+          }
+          
+          render()
+          {
+            return (
+              <form onSubmit={this.handleSubmit}>
+                ...
+              </form>
+            );
+          }
+        }
+        ```
