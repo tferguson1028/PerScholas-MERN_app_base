@@ -4,21 +4,25 @@ export class SignUpForm extends Component
 {
   state = { username: "", email: "", password: "", confirm: "", error: "" };
   
-  // handleSubmit = async (event) =>
-  // {
-  //   event.preventDefault();
-  //   try {
-  //     const formData = {...this.state};
-  //     console.log("Form Data: ", formData)
-  //     delete formData.error;
-  //     delete formData.confirm;
-  //     const user = await signUp(formData)
-  //     this.props.setUser(user);
-  //   } catch {
-  //     // An error occurred
-  //     this.setState({ error: 'Sign Up Failed - Try Again' });
-  //   }
-  // }
+  handleSubmit = async (event) =>
+  {
+    event.preventDefault();
+    try 
+    {
+      // const formData = {...this.state};
+      // console.log("Form Data: ", formData);
+      // 
+      // delete formData.error;
+      // delete formData.confirm;
+      // 
+      // // const user = await signUp(formData);
+      // this.props.setUser(user);
+    } catch(exception)
+    {
+      // An error occurred
+      // this.setState({ error: 'Sign Up Failed - Try Again' });
+    }
+  }
   
   // You have to use an arrow function for this.setState to work. This is stupid.
   // You can also bind manually, but I don't know how to do that.

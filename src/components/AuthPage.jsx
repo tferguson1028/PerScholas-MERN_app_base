@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SignUpForm from './SignUpForm';
 
-function AuthPage() {
+function AuthPage() 
+{
+  const [user, setUser] = useState(null);
+
   return (
     <div>
       <h1>AuthPage</h1>
