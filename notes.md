@@ -43,3 +43,6 @@ Steps we took to build.
     console.log(`Express app running on port ${port}`)
   });
   ```
+7. Start both the server and client in seperate terminals.
+  - Client: ```npm start```
+  - Server: ```nodemon server```
