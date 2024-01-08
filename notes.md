@@ -63,3 +63,20 @@ Note, whenever a change is made to the ```package.json``` file, restart the serv
 
 9. Create your react app with the components and imports you want.
 10. Install React Routing ```npm i react-router-dom``` so that we can route pages.
+
+## Making the User Authentication
+1. Create the 
+```
+  config 
+  routes
+  models
+  controllers
+```
+folders in the root directory.
+
+2. Install and setup ```dotenv``` with
+the ```npm i dotenv``` command.
+
+Input the code ```require('dotenv').config();``` into the ```server.js``` file near the top.
+
+Create a ```.env``` file and add it to the ```.gitignore``` file.
