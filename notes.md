@@ -74,9 +74,11 @@ Note, whenever a change is made to the ```package.json``` file, restart the serv
 ```
 folders in the root directory.
 
-2. Install and setup ```dotenv``` with
-the ```npm i dotenv``` command.
-
-Input the code ```require('dotenv').config();``` into the ```server.js``` file near the top.
-
-Create a ```.env``` file and add it to the ```.gitignore``` file.
+2. Setup database connection.
+  - Install and setup ```dotenv``` with the ```npm i dotenv``` command.
+  - Input the code ```require('dotenv').config();``` into the ```server.js``` file near the top.
+  - Create a ```.env``` file and add it to the ```.gitignore``` file.
+  - Create a file ```database.js``` in the ```/config``` folder.
+  - Add the code ```require('./config/database');``` into the server.js file.
+  
+3. 
