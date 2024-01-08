@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import AuthPage from './components/AuthPage';
 import NewOrderPage from './components/NewOrderPage';
 import OrderHistoryPage from './components/OrderHistoryPage';
+import NavBar from './components/NavBar';
 
 function App() 
 {
@@ -15,11 +16,14 @@ function App()
   return (
     <div className="App">
       { 
-        user ? 
-        <Routes>
-          <Route path={`/orders`} element={<OrderHistoryPage />} />
-          <Route path={`/orders/new`} element={<NewOrderPage />} />
-        </Routes> : 
+        user ?
+        <>
+          <NavBar />
+          <Routes>
+            <Route path={`/orders`} element={<OrderHistoryPage />} />
+            <Route path={`/orders/new`} element={<NewOrderPage />} />
+          </Routes> 
+        </> :
         <AuthPage /> 
       }
     </div>
