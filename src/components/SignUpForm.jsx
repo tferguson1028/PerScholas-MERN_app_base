@@ -10,6 +10,7 @@ export class SignUpForm extends Component
     event.preventDefault();
     try 
     {
+    
       const formData = {...this.state};
       console.log("Form Data: ", formData);
 
@@ -17,13 +18,14 @@ export class SignUpForm extends Component
       delete formData.error;
       delete formData.confirm;
 
+      alert(JSON.stringify(this.state));
+      
       // The promise returned by the signUp service method
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await signUp(formData);
       console.log(user);
       
-      // this.props.setUser(user);
     } catch(exception)
     {
       // An error occurred
