@@ -84,21 +84,33 @@ Next, we'll be setting up the client portion of the app. The steps will change b
 
 
 ## Making the User Authentication
-11. Create the 
-    ```config```,
-    ```routes```,
-    ```models```,
-    ```controllers```
-    folders in the root directory.
+Now we'll be setting up our utilities, services, and APIs; meaning any outgoing and incoming data to be handled. 
 
-12. Initialize database connection.
-    - Install and setup ```dotenv``` with the ```npm i dotenv``` command.
-    - Input the code ```require('dotenv').config();``` into the ```server.js``` file near the top.
-    - Create a ```.env``` file and add it to the ```.gitignore``` file.
-    - Create a file ```database.js``` in the ```/config``` folder.
-    - Add the code ```require('./config/database');``` into the server.js file.
+1. Create the ```config```, ```routes```, ```models```, and ```controllers``` folders in the root directory.
+    - The config will be used for configuration files.
+    - The routes will be used for outgoing data. (i.e. a POST request containing form data)
+    - The models will hold data for the app. 
+    - The controllers will handle how incoming and outgoing data should look and be formatted.
 
-13. Next we're setting up our utilities, services, and APIs.
+2. Initialize database connection.
+   - Install ```mongoose``` and ```dotenv```. ```npm i dotenv mongoose```
+   - Input the code ```require('dotenv').config();``` into the ```server.js``` file near the top.
+   - Create a ```.env``` file and add it to the ```.gitignore``` file.
+   - Create a file ```database.js``` in the ```/config``` folder.
+   - Add the code ```require('./config/database');``` into the server.js file.
+   - Add the following code to the ```server.js``` file to connect your app with your database.
+      ```
+      const mongoose = require('mongoose');
+      mongoose.connect(process.env.DATABASE_URL);
+      const db = mongoose.connection;
+      
+      db.on('connected', function () {
+        console.log(`Connected to ${db.name} at ${db.host}:${db.port}`);
+      });
+      ```
+   - Create an environment variable within the ```.env``` file which will contain your database URL. The code above uses ```DATABASE_URL```, you may change it to whatever you want. Follow the connection instructions on MongoDB. 
 
-14. Create a form component that can send the data to our api route.
+3. 
+
+4. Create a form component that can send the data to our api route.
 
