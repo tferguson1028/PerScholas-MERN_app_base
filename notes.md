@@ -59,3 +59,4 @@ This will be in the top-level of the document
   "proxy": "http://localhost:3001"
 }
 ```
+Note, whenever a change is made to the ```package.json``` file, restart the server
