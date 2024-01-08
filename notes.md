@@ -62,3 +62,4 @@ This will be in the top-level of the document
 Note, whenever a change is made to the ```package.json``` file, restart the server
 
 9. Create your react app with the components and imports you want.
+10. Install React Routing ```npm i react-router-dom``` so that we can route pages.
