@@ -1,11 +1,12 @@
+//% Configurations
+require('dotenv').config();
+require('./config/database');
+
 //% Requires
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-
-require('dotenv').config();
-require('./config/database');
 
 //% Middleware
 const app = express();
