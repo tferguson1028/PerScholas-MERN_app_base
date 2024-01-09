@@ -19,6 +19,16 @@ const userSchema = new Schema(
     minLength: 3,
     required: true
   }
+}, 
+{
+  timestamps: true,
+  // Even though it's hashed - don't serialize the password
+  toJSON: {
+    transform: function(doc, ret) {
+      delete ret.password;
+      return ret;
+    }
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);
