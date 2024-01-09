@@ -33,6 +33,6 @@ export async function logIn(loginData)
   
   if(res.ok)
   {
-    console.log(res.json());
+    return res.json();
   }else { throw new Error("Invalid Login"); }
 }
