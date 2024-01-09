@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const bcrypt = require('bcrypt');
+
 // Time it will take to hash
 const SALT_ROUNDS = 6;  // 6 is a reasonable value
 
