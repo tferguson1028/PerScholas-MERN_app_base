@@ -11,7 +11,7 @@ async function create(req, res)
     res.json(token);
   }catch(exception)
   {
-    res.status(400).json(exception)
+    res.status(400).json(exception);
   }
 }
 
@@ -26,7 +26,23 @@ function createJWT(user)
   );
 }
 
-module.exports = { create };
+async function login(req, res)
+{
+  try
+  {
+    // Get user from db
+    const user = await User.findOne({ email: req.body.email });
+    // (req.body.email);
+    console.log(user);
+    res.json(user);
+  }catch(exception)
+  {
+    res.status(400).json(exception);
+  }
+}
+
+
+module.exports = { create, login };
 
 
 // function create(req, res)

@@ -49,7 +49,7 @@ export function logOut()
   localStorage.removeItem("token");
 }
 
-export function logIn()
+export function logIn(loginData)
 {
-  
+  usersAPI.logIn(loginData);
 }
