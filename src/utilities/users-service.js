@@ -8,6 +8,8 @@ export async function signUp(userData)
   // which will ultimately return a JSON Web Token (JWT)
   const token = await usersAPI.signUp(userData);
   
+  localStorage.setItem('token', token);
+  
   // Baby step by returning whatever is sent back by the server
   return token;
 }
