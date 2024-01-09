@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import * as usersService from '../utilities/users-service';
 
 function LoginForm(props) 
@@ -7,9 +6,6 @@ function LoginForm(props)
   const { setUser } = props;
   const [credentials, setCredentials] = useState({ email: "", password: ""});
   const [error, setError] = useState("");
-  const [disable, setDisable] = useState(false);
-
-  // useEffect(() => {}, [disable]);
 
   async function handleSubmit(event) 
   {
@@ -27,8 +23,6 @@ function LoginForm(props)
   
   function handleChange(event) 
   {
-    // console.log(disable);
-    // setDisable(credentials.email.length < 0 || credentials.password.length < 0);
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
     setError('');
   }
