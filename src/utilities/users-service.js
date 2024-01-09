@@ -8,8 +8,15 @@ export async function signUp(userData)
   // which will ultimately return a JSON Web Token (JWT)
   const token = await usersAPI.signUp(userData);
   
-  localStorage.setItem("token", token);
-  return token;
+  try
+  {
+    localStorage.setItem("token", token);
+    return token;
+  } catch(exception)
+  {
+    console.error(exception);
+    return null;
+  }
 }
 
 export function getToken()
@@ -37,3 +44,7 @@ export function getUser()
   return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
 
+export function logOut() 
+{
+  localStorage.removeItem("token");
+}

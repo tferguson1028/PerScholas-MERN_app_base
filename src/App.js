@@ -20,8 +20,9 @@ function App()
       { 
         user ?
         <>
-          <NavBar user={user} />
+          <NavBar user={ user } setUser={ setUser } />
           <Routes>
+            <Route index element={<OrderHistoryPage />} />
             <Route path={`/orders`} element={<OrderHistoryPage />} />
             <Route path={`/orders/new`} element={<NewOrderPage />} />
           </Routes> 
