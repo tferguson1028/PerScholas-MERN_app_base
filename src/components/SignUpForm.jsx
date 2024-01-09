@@ -3,7 +3,7 @@ import { signUp } from '../utilities/users-service';
 
 export class SignUpForm extends Component 
 {
-  state = { username: "", email: "", password: "", confirm: "", error: "" };
+  state = { name: "", email: "", password: "", confirm: "", error: "" };
   
   handleSubmit = async (event) =>
   {
@@ -50,8 +50,8 @@ export class SignUpForm extends Component
         <h1>SignUpForm</h1>
         <div className='form-container'>
           <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username" id="username" value={this.state.username} onChange={this.handleChange} required/>
+            <label htmlFor="name">Username</label>
+            <input type="text" name="name" id="name" value={this.state.name} onChange={this.handleChange} required/>
             <label htmlFor='email'>Email</label>
             <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
             <label htmlFor='password'>Password</label>
