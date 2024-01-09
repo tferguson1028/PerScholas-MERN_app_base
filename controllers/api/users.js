@@ -29,7 +29,7 @@ function createJWT(user)
 module.exports = { create };
 
 
-// function createExample(req, res)
+// function create(req, res)
 // {
 //   res.json(
 //   {
