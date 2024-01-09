@@ -48,3 +48,8 @@ export function logOut()
 {
   localStorage.removeItem("token");
 }
+
+export function logIn()
+{
+  
+}

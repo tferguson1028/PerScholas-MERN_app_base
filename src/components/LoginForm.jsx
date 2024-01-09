@@ -1,62 +1,53 @@
-import React, { Component } from 'react';
-import { signUp } from '../utilities/users-service';
+import React, {useEffect} from 'react';
+import { useState } from 'react';
+import * as usersService from '../utilities/users-service';
 
-export class LoginForm extends Component 
+function LoginForm(props) 
 {
-  state = { email: "", password: "", error: "" };
-  
-  handleSubmit = async (event) =>
+  const { setUser } = props;
+  const [credentials, setCredentials] = useState({ email: "", password: ""});
+  const [error, setError] = useState("");
+  const [disable, setDisable] = useState(false);
+
+  // useEffect(() => {}, [disable]);
+
+  async function handleSubmit(event) 
   {
     event.preventDefault();
-    try 
-    {
-      const formData = {...this.state};
-      console.log("Form Data: ", formData);
-
-      // Removing unused data form the object we're submitting
-      delete formData.error;
-      delete formData.confirm;
-
-      alert(JSON.stringify(this.state));
-      
-      console.log(user);
-      
-    } catch(exception)
-    {
-      // An error occurred
-      this.setState({ error: 'Sign Up Failed - Try Again' });
+    try {
+      // The promise returned by the signUp service method
+      // will resolve to the user object included in the
+      // payload of the JSON Web Token (JWT)
+      const user = await usersService.logIn(credentials);
+      setUser(user);
+    } catch {
+      setError('Log In Failed - Try Again');
     }
   }
   
-  // You have to use an arrow function for this.setState to work. This is stupid.
-  // You can also bind manually, but I don't know how to do that.
-  handleChange = (event) =>
+  function handleChange(event) 
   {
-    // Doing this allows us to access an object param if the names are the same.
-    this.setState({[event.target.name]: event.target.value, error: "" });
+    // console.log(disable);
+    // setDisable(credentials.email.length < 0 || credentials.password.length < 0);
+    setCredentials({ ...credentials, [event.target.name]: event.target.value });
+    setError('');
   }
   
-  render() 
-  {
-    const disable = this.state.password.length > 0 && this.state.email.length > 0;
-    
-    return (
-      <div>
-        <h1>SignUpForm</h1>
-        <div className='form-container'>
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label htmlFor='email'>Email</label>
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-            <label htmlFor='password'>Password</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-            <button type="submit" disabled={disable}>LOG IN</button>
-          </form>
-        </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
+  return (
+    <div>
+      <h1>Log In</h1>
+      <div className='form-container'>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <label htmlFor='email'>Email</label>
+          <input type="email" name="email" value={credentials.email} onChange={handleChange} required />
+          <label htmlFor='password'>Password</label>
+          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <button type="submit" disabled={false}>Log In</button>
+        </form>
       </div>
-    )
-  }
+      <p className="error-message">&nbsp;{error}</p>
+    </div>
+  );
 }
 
 export default LoginForm;
-
