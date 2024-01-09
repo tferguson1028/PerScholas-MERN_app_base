@@ -15,4 +15,10 @@ nav > .Links
   display: flex;
   flex-direction: row;
   gap: 12px;
+  
+  width: 100%;
 }
+
+/* For padding */
+nav > .Links > *:nth-last-child(2){ flex: 1; }
+

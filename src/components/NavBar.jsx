@@ -24,6 +24,7 @@ function NavBar(props)
       <div className='Links'>
         <Link to="/orders">Order History</Link>
         <Link to="/orders/new">New Order</Link>
+        <span className='Padding'></span>
         <Link to="" onClick={handleLogOut}>Log Out</Link>
       </div>
     </nav>
