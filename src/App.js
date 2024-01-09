@@ -27,7 +27,7 @@ function App()
             <Route path={`/orders/new`} element={<NewOrderPage />} />
           </Routes> 
         </> :
-        <AuthPage /> 
+        <AuthPage setUser={ setUser } /> 
       }
     </div>
   );

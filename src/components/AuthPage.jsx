@@ -2,15 +2,30 @@ import React, {useState} from 'react'
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 
-function AuthPage() 
+function AuthPage(props) 
 {
-  const [user, setUser] = useState(null);
-
+  const { setUser } = props;
+  const [ authType, setAuthType ] = useState(0);
+  
+  function getAuth()
+  {
+    switch(authType)
+    {
+      case 0: return <LoginForm setUser={setUser} />;
+      case 1: return <SignUpForm />;
+    }
+  }
+  
+  function changeAuth()
+  {
+    setAuthType(authType === 0 ? 1 : 0);
+  }
+  
   return (
     <div>
-      <h1>AuthPage</h1>
-      <LoginForm setUser={setUser} />
-      <SignUpForm />
+      <h1>AuthPage</h1>      
+      { getAuth() }
+      <button onClick={changeAuth}>Change Auth</button>
     </div>
   )
 }
