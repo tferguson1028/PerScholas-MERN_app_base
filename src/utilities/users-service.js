@@ -49,8 +49,8 @@ export function logOut()
   localStorage.removeItem("token");
 }
 
-export async function logIn(loginData)
+export async function logIn(credentials)
 {
-  const dbData = await usersAPI.logIn(loginData);
+  const dbData = await usersAPI.logIn(credentials);
   console.log(dbData);
 }

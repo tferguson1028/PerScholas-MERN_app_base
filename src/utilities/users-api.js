@@ -22,13 +22,13 @@ export async function signUp(userData)
   } else { throw new Error('Invalid Sign Up'); }
 }
 
-export async function logIn(loginData)
+export async function logIn(credentials)
 {
   const res = await fetch(BASE_URL + "/login",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(loginData)
+    body: JSON.stringify(credentials)
   });
   
   if(res.ok)
