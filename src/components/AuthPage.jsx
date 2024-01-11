@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 
+import "../styles/AuthPageStyle.css";
+
 function AuthPage(props) 
 {
   const { setUser } = props;
@@ -22,11 +24,15 @@ function AuthPage(props)
   }
   
   return (
-    <div>
-      <h1>AuthPage</h1>      
+    <>
+      {/* <div className='logo'> */}
+        <h1>MERN CAFE</h1>
+      {/* </div> */}
       { getAuth() }
-      <button onClick={changeAuth}>Change Auth</button>
-    </div>
+      {/* <div className='button'> */}
+        <button onClick={changeAuth}>Change Auth</button>
+      {/* </div> */}
+    </>
   )
 }
 

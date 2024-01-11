@@ -39,7 +39,7 @@ function LoginForm(props)
           <button type="submit" disabled={false}>Log In</button>
         </form>
       </div>
-      <p className="error-message">&nbsp;{error}</p>
+      <p className="error-message">{error}</p>
     </div>
   );
 }
