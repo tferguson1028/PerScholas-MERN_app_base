@@ -20,14 +20,14 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 // Middleware to verify token and assign user object of payload to req.user.
 // Be sure to mount before routes
-app.use(require('./config/checkToken'));
+app.use(require('./config/checkToken')); // This adds modules from separate file.
 
 
 //% Database
 
 
 //% API Routes
-app.use('/api/users', require('./routes/api/users'));
+app.use('/api/users', require('./routes/api/users')); // This adds routes from separate file.
 
 //% Routes
 // The following "catch all" route (note the *) is necessary
