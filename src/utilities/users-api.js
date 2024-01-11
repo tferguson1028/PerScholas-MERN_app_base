@@ -1,9 +1,9 @@
 // This is the base path of the Express route we'll define
 const BASE_URL = '/api/users';
 
-export async function signUp(userData) { sendRequest(`${BASE_URL}`, "POST", userData); }
-export async function logIn(credentials) { sendRequest(`${BASE_URL}/login`, "POST", credentials); }
-export async function checkToken() { sendRequest(`${BASE_URL}/check-token`); }
+export async function signUp(userData) { return sendRequest(`${BASE_URL}`, "POST", userData); }
+export async function logIn(credentials) { return sendRequest(`${BASE_URL}/login`, "POST", credentials); }
+export async function checkToken() { return sendRequest(`${BASE_URL}/check-token`); }
 
 export async function sendRequest(url, method = "GET", payload = null) 
 {

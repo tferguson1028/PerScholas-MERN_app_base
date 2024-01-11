@@ -60,5 +60,6 @@ export async function logIn(credentials)
 
 export async function checkToken()
 {
-  alert("Check Token");
+  let token = await usersAPI.checkToken();
+  alert(token);
 }
