@@ -1,8 +1,8 @@
-const User = require("../../models/user.js")
+const User = require("../../models/user.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 
-function createJWT(user) 
+function createJWT(user)
 {
   // Returns String
   return jwt.sign(
@@ -20,7 +20,7 @@ async function create(req, res)
     // Add user to db
     const user = await User.create(req.body);
     const token = createJWT(user);
-    res.json(token);
+    respond(res, token);
   }catch(exception)
   {
     res.status(400).json(exception);
@@ -41,8 +41,7 @@ async function login(req, res, next)
       throw new Error("Passwords do not match."); 
     }
     
-    res.json(createJWT(user));
-    next();
+    respond(res, createJWT(user), next);
   }catch(exception)
   {
     console.log(exception);
@@ -52,7 +51,22 @@ async function login(req, res, next)
 
 async function checkToken(req, res)
 {
-  res.json("{ba: \"ba\"}");
+  // req.user will always be there for you when a token is sent
+  console.log("req.user", req.user);
+  res.json(req.exp);
+}
+
+function respond(res, json, next = () => {})
+{
+  try
+  {
+    res.json(json);
+    next();
+  }catch(exception)
+  {
+    console.log(exception);
+    res.status(400).json(exception);
+  }
 }
 
 

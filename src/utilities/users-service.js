@@ -62,4 +62,7 @@ export async function checkToken()
 {
   let token = await usersAPI.checkToken();
   alert(token);
+  console.log(token);
+  
+  return new Date(token);
 }

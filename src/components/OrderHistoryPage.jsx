@@ -7,6 +7,7 @@ function OrderHistoryPage()
   async function handleCheckToken()
   {
     let expData = await checkToken();
+    console.log(expData);
   }
 
   return (
