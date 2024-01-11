@@ -1,5 +1,6 @@
 const User = require("../../models/user.js")
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 async function create(req, res)
 {
@@ -26,17 +27,28 @@ function createJWT(user)
   );
 }
 
-async function login(req, res)
+async function login(req, res, next)
 {
   try
   {
     // Get user from db
     const user = await User.findOne({ email: req.body.email });
-    // (req.body.email);
-    console.log(user);
-    res.json(user);
+    // console.log(user);
+    // console.log(req.body);
+    
+    let match = await bcrypt.compare(req.body.password, user.password);
+
+    if(!match) 
+    { 
+      console.log("HI");
+      throw new Error("Passwords do not match."); 
+    }
+    
+    res.json(createJWT(user));
+    next();
   }catch(exception)
   {
+    console.log(exception);
     res.status(400).json(exception);
   }
 }
