@@ -1,38 +1,24 @@
 // This is the base path of the Express route we'll define
 const BASE_URL = '/api/users';
 
-export async function signUp(userData) 
+export async function signUp(userData) { sendRequest(`${BASE_URL}`, "POST", userData); }
+export async function logIn(credentials) { sendRequest(`${BASE_URL}/login`, "POST", credentials); }
+export async function checkToken() { sendRequest(`${BASE_URL}/check-token`); }
+
+export async function sendRequest(url, method = "GET", payload = null) 
 {
   // Fetch uses an options object as a second arg to make requests
   // other than basic GET requests, include data, headers, etc.
-  const res = await fetch(BASE_URL, 
+  const options = { method };
+  if(payload)
   {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    // Fetch requires data payloads to be stringified
-    // and assigned to a body property on the options object
-    body: JSON.stringify(userData)
-  });
+    options.headers = { 'Content-Type': 'application/json' };
+    options.body = JSON.stringify(payload);
+  }
   
-  // Check if request was successful
-  if (res.ok) 
-  {
-    // res.json() will resolve to the JWT
-    return res.json();
-  } else { throw new Error('Invalid Sign Up'); }
-}
+  const res = await fetch(url, options);
 
-export async function logIn(credentials)
-{
-  const res = await fetch(BASE_URL + "/login",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials)
-  });
-  
-  if(res.ok)
-  {
-    return res.json();
-  }else { throw new Error("Invalid Login"); }
+  // res.json() will resolve to the JWT
+  if (res.ok) { return res.json(); } 
+  else { throw new Error('Invalid Sign Up'); }
 }
