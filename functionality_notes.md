@@ -34,5 +34,5 @@ Authenticates, validates and uses the data given to determine what the applicati
 with the data it received. 
 
 ## 6. Model
-Determines what the data should look like.
+Determines what the data should look like and how it relates to the rest of the application.
 If the data does not look like the model, the app cannot work with it.
