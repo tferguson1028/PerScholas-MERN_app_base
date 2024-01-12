@@ -1,4 +1,4 @@
-Steps we took to build.
+# Steps we took to build.
 
 ## Initialization
 First, we need to set up the program and add a majority of the functions we will use. This program will consist of a server and client portion that will work together.
